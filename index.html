@@ -7,25 +7,36 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">  
 </head>
 <body>
-    <style>
-        html { font-family: sans-serif; color: #434A54; background:#E6E9ED;}
-        body {margin-left:5%; margin-right: 5%;}
+    <style>        
+        html { font-family: sans-serif; color: rgba(0,0,0,0.8); background:#E6E9ED;}        
         #title {  font-weight: bold; font-size: 2.5em; border-bottom:4px solid #37BC9B; padding-bottom:0.25em;}
-        #desc { margin-top:1em; margin-bottom:1em; font-size:1.5em; color:#656D78;}
-        #tip { margin-top:10%;} 
+        #desc { margin-top:1em; margin-bottom:1em; font-size:1.5em; color:#434A54;}              
         a {color:#DA4453; font-weight: bold;}
-        a:hover {color:#ED5565;}            
+        a:hover {color:#ED5565;}  
+        
+        .card {                          
+            position:absolute;            
+            left:3em;
+            right:3em;
+            bottom:3em;                        
+            padding:2em;
+            background:#fff;
+            -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+            box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+        }                               
     </style>
     
     <noscript>
         <p>Javascript disabled!</p>
     </noscript>
     
-    <div id="tip">      
-    </div>    
-    <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
-    <p><small><a target="_blank" href="https://github.com/braydie/PragProgTips">View on GitHub</a></small></p>
-        
+    <div class="card">
+        <div id="tip">      
+        </div>    
+        <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>         
+        <span><a target="_blank" href="https://github.com/braydie/PragProgTips"><img src="github.png" alt="View on GitHub" /></a></span>
+    </div>        
+    
     <script>
         var Tips = [{
                         "title": "Care About Your Craft",
