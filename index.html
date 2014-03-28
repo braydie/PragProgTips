@@ -2,40 +2,45 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Pragmatic Software Development Tips</title>  
+    <title>Pragmatic Software Development Tips</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">  
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <style>        
-        html { font-family: sans-serif; color: rgba(0,0,0,0.8); background:#E6E9ED;}        
+    <style>
+        html { font-family: sans-serif; color: rgba(0,0,0,0.8); background:#E6E9ED;}
         #title {  font-weight: bold; font-size: 2.5em; border-bottom:4px solid #37BC9B; padding-bottom:0.25em;}
-        #desc { margin-top:1em; margin-bottom:1em; font-size:1.5em; color:#434A54;}              
+        #desc { margin-top:1em; margin-bottom:1em; font-size:1.5em; color:#434A54;}
         a {color:#DA4453; font-weight: bold;}
-        a:hover {color:#ED5565;}  
-        
-        .card { 
-            margin-top: 10%; 
+        a:hover {color:#ED5565;}
+
+        .card {
+            margin-top: 10%;
             margin-left: 4em;
             margin-right: 4em;
             padding:2em;
             background:#fff;
             -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
             box-shadow: 0 2px 1px rgba(0,0,0,0.2);
-        }                               
+        }
+
+        .logo {
+            width: 24px;
+            height: 28px;
+        }
     </style>
-    
+
     <noscript>
         <p>Javascript disabled!</p>
     </noscript>
-    
+
     <div class="card">
-        <div id="tip">      
-        </div>    
-        <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>         
-        <span><a target="_blank" href="https://github.com/braydie/PragProgTips"><img src="github.png" alt="View on GitHub" /></a></span>
-    </div>        
-    
+        <div id="tip">
+        </div>
+        <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
+        <span><a target="_blank" href="https://github.com/braydie/PragProgTips"><img class="logo" src="github.png" alt="View on GitHub" /></a></span>
+    </div>
+
     <script>
         var Tips = [{
                         "title": "Care About Your Craft",
@@ -117,7 +122,7 @@
                         "title": "Analyze Workflow to Improve Concurrency",
                         "desc": "Exploit concurrency in your user’s workflow."
                     },
-                    {                        
+                    {
                         "title": "Always Design for Concurrency",
                         "desc": "Allow for concurrency, and you’ll design cleaner interfaces with fewer assumptions."
                     },
@@ -245,7 +250,7 @@
                         "title": "Use Exceptions for Exceptional Problems",
                         "desc": "Exceptions can suffer from all the readability and maintainability problems of classic spaghetti code. Reserve exceptions for exceptional things."
                     },
-                    {    
+                    {
                         "title": "Minimize Coupling Between Modules",
                         "desc": "Avoid coupling by writing “shy” code and applying the Law of Demeter."
                     },
@@ -269,7 +274,7 @@
                         "title": "Test Your Estimates",
                         "desc": "Mathematical analysis of algorithms doesn’t tell you everything. Try timing your code in its target environment."
                     },
-                    {    
+                    {
                         "title": "Design to Test",
                         "desc": "Start thinking about testing before you write a line of code."
                     },
@@ -289,7 +294,7 @@
                         "title": "Start When You’re Ready",
                         "desc": "You’ve been building experience all your life. Don’t ignore niggling doubts."
                     },
-                    {    
+                    {
                         "title": "Don’t Be a Slave to Formal Methods",
                         "desc": "Don’t blindly adopt any technique without putting it into the context of your development practices and capabilities."
                     },
@@ -318,12 +323,12 @@
                         "desc": "Craftsmen of an earlier age were proud to sign their work. You should be, too."
                     }
                 ];
-        
+
         var item = Tips[Math.floor(Math.random()*Tips.length)];
-                  
+
         document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
         document.getElementById("title").innerHTML = item.title;
-        document.getElementById("desc").innerHTML = item.desc;        
-    </script>    
+        document.getElementById("desc").innerHTML = item.desc;
+    </script>
 </body>
 </html>
