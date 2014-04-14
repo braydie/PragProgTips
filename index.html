@@ -5,8 +5,6 @@
     <title>Pragmatic Software Development Tips</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-</head>
-<body>
     <style>
         html { font-family: sans-serif; color: rgba(0,0,0,0.8); background:#E6E9ED;}
         #title {  font-weight: bold; font-size: 2.5em; border-bottom:4px solid #37BC9B; padding-bottom:0.25em;}
@@ -14,7 +12,7 @@
         a {color:#DA4453; font-weight: bold;}
         a:hover {color:#ED5565;}
 
-        .card {
+        #card {
             margin-top: 10%;
             margin-left: 4em;
             margin-right: 4em;
@@ -28,17 +26,27 @@
             width: 24px;
             height: 28px;
         }
+        
+        #theme {
+            float:right;
+        }
+        
+        #themeText {
+            color: #888888;
+        }
     </style>
-
+</head>
+<body>
     <noscript>
         <p>Javascript disabled!</p>
     </noscript>
 
-    <div class="card">
+    <div id="card">
         <div id="tip">
         </div>
         <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
         <span><a target="_blank" href="https://github.com/braydie/PragProgTips"><img class="logo" src="github.png" alt="View on GitHub" /></a></span>
+        <div id="theme"><input type="checkbox" id="cbTheme" name="highcontrast" value="highcontrast" onchange='changeStyle();' /> <span id="themeText">Dark Theme</span></div>
     </div>
 
     <script>
@@ -329,6 +337,43 @@
         document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
         document.getElementById("title").innerHTML = item.title;
         document.getElementById("desc").innerHTML = item.desc;
+
+        if (localStorage.getItem("DarkTheme") === null)
+        {
+            localStorage.setItem("DarkTheme", false);
+        }
+        else
+        {
+            if (localStorage.getItem("DarkTheme") === "true")
+            {
+                document.getElementById("cbTheme").checked = true;
+            }
+            else
+            {
+                document.getElementById("cbTheme").checked = false;
+            }
+            changeStyle();
+        }
+
+        function changeStyle()
+        {
+            if ( document.getElementById("cbTheme").checked === true )
+            {
+                document.getElementsByTagName("html")[0].style.background = "#000000";
+                document.getElementById("card").style.background = "#333333";
+                document.getElementById("title").style.color = "#dddddd";
+                document.getElementById("desc").style.color = "#dddddd";
+                localStorage.setItem("DarkTheme", true);
+            }
+            else
+            {
+                document.getElementsByTagName("html")[0].style.background = "";
+                document.getElementById("card").style.background = "";
+                document.getElementById("title").style.color = "";
+                document.getElementById("desc").style.color = "";
+                localStorage.setItem("DarkTheme", false);
+            }
+        }
     </script>
 </body>
 </html>
