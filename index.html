@@ -5,43 +5,63 @@
     <title>Pragmatic Software Development Tips</title>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link id="theme" rel="stylesheet" href="css/themes/light.css">
 </head>
 <body>
-    <style>
-        html { font-family: sans-serif; color: rgba(0,0,0,0.8); background:#E6E9ED;}
-        #title {  font-weight: bold; font-size: 2.5em; border-bottom:4px solid #37BC9B; padding-bottom:0.25em;}
-        #desc { margin-top:1em; margin-bottom:1em; font-size:1.5em; color:#434A54;}
-        a {color:#DA4453; font-weight: bold;}
-        a:hover {color:#ED5565;}
-
-        .card {
-            margin-top: 10%;
-            margin-left: 4em;
-            margin-right: 4em;
-            padding:2em;
-            background:#fff;
-            -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
-            box-shadow: 0 2px 1px rgba(0,0,0,0.2);
-        }
-
-        .logo {
-            width: 24px;
-            height: 28px;
-        }
-    </style>
-
     <noscript>
-        <p>Javascript disabled!</p>
+        Javascript disabled!
     </noscript>
 
     <div class="card">
         <div id="tip">
         </div>
         <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
-        <span><a target="_blank" href="https://github.com/braydie/PragProgTips"><img class="logo" src="github.png" alt="View on GitHub" /></a></span>
+        <span><a target="_blank" href="https://github.com/braydie/PragProgTips" title="View on GitHub"><i class="fa fa-github fa-2x"></i></a></span>
+        <span id="settings-toggle"><a href="#" onclick="toggleVisibility('settings')" title="Toggle Settings"><i class="fa fa-cog fa-2x"></i></a></span>
     </div>
 
+    <div id="settings" class="card">
+        <h2>Theme</h2>
+        <ul class="themes">
+            <li><a href="#" onclick="changeTheme('light')">Light</a></li>
+            <li><a href="#" onclick="changeTheme('dark')">Dark</a></li>
+            <li><a href="#" onclick="changeTheme('nightfall')">Nightfall</a></li>
+        </ul>
+    </div>
+    
     <script>
+        function toggleVisibility(id) {
+           var e = document.getElementById(id);
+           if(e.style.display == 'block')
+              e.style.display = 'none';
+           else
+              e.style.display = 'block';
+        }
+    
+        function changeTheme(themeName) {
+            var oldlink = document.getElementById("theme");
+
+            var newlink = document.createElement("link");
+            newlink.setAttribute("id", "theme");
+            newlink.setAttribute("rel", "stylesheet");
+            newlink.setAttribute("type", "text/css");
+            newlink.setAttribute("href", "css/themes/" + themeName +".css");
+
+            document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
+            localStorage.setItem("Theme", themeName);        
+        }
+        
+        if(localStorage.getItem("Theme") != null)
+        {
+            changeTheme(localStorage.getItem("Theme"));
+        }
+        else
+        {
+            changeTheme("light");
+        }
+        
         var Tips = [{
                         "title": "Care About Your Craft",
                         "desc": "Why spend your life developing software unless you care about doing it well?"

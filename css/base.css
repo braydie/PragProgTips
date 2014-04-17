@@ -1,0 +1,60 @@
+html { 
+    font-family: sans-serif; 
+    color:black;
+}
+
+.card {    
+    margin-top: 10%;
+    margin-left: 4em;
+    margin-right: 4em;
+    padding:2em;
+    -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 1px rgba(0,0,0,0.2);
+    border-radius: 3px;
+}
+
+#title {  
+    font-weight: bold; 
+    font-size: 2.5em; 
+    padding-bottom:0.25em;
+}
+
+#desc { 
+    margin-top:1em; 
+    margin-bottom:1em; 
+    font-size:1.5em; 
+}
+
+a {    
+    font-weight: bold;
+}
+
+#settings {
+    display:none;
+    margin-top: 1em;
+    margin-bottom:1em;
+}
+
+#settings h2 {
+    margin-top: 0;
+}
+
+#settings-toggle i {
+    float:right;
+    color: rgba(0,0,0,0.3); 
+}
+
+#settings-toggle i:hover {
+    color: rgba(0,0,0,0.5); 
+}
+
+ul.themes {
+    padding-left:0;
+    display:inline;
+}
+
+ul.themes li {
+    margin-right:1em;
+    list-style: none;
+    display: inline;
+}

@@ -1,0 +1,24 @@
+html {
+    color: rgba(0,0,0,0.8); 
+    background:#E6E9ED;
+}
+
+.card {
+   background:#fff;
+}
+
+#title {
+    border-bottom:4px solid #37BC9B; 
+}
+
+#desc {
+    color:#434A54;
+}
+
+a {
+    color:#DA4453; 
+}
+
+a:hover {
+    color:#ED5565;
+}
