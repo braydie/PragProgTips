@@ -23,3 +23,11 @@ a {
 a:hover {
     color:#ED5565;
 }
+
+#settings-toggle i {
+    color:#C2C2C2;
+}
+
+#settings-toggle i:hover {
+    color:#FFFFFF;
+}
