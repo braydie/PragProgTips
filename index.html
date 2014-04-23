@@ -30,7 +30,7 @@
             <li><a href="#" onclick="changeTheme('nightfall')">Nightfall</a></li>
         </ul>
     </div>
-    
+
     <script>
         function toggleVisibility(id) {
            var e = document.getElementById(id);
@@ -39,20 +39,13 @@
            else
               e.style.display = 'block';
         }
-    
+
         function changeTheme(themeName) {
-            var oldlink = document.getElementById("theme");
-
-            var newlink = document.createElement("link");
-            newlink.setAttribute("id", "theme");
-            newlink.setAttribute("rel", "stylesheet");
-            newlink.setAttribute("type", "text/css");
-            newlink.setAttribute("href", "css/themes/" + themeName +".css");
-
-            document.getElementsByTagName("head").item(0).replaceChild(newlink, oldlink);
-            localStorage.setItem("Theme", themeName);        
+            var cssLink = document.getElementById("theme");
+            cssLink.setAttribute("href", "css/themes/" + themeName + ".css");
+            localStorage.setItem("Theme", themeName);
         }
-        
+
         if(localStorage.getItem("Theme") != null)
         {
             changeTheme(localStorage.getItem("Theme"));
@@ -61,7 +54,7 @@
         {
             changeTheme("light");
         }
-        
+
         var Tips = [{
                         "title": "Care About Your Craft",
                         "desc": "Why spend your life developing software unless you care about doing it well?"
