@@ -29,6 +29,11 @@
             <li><a href="#" onclick="changeTheme('dark')">Dark</a></li>
             <li><a href="#" onclick="changeTheme('nightfall')">Nightfall</a></li>
         </ul>
+        <h2>Auto Reload</h2>
+        <ul class="autoreload">
+            <li><input type="checkbox" id="reload-enable" onChange="toggleReload(this.checked)"> Enable auto-reload</li>
+            <li><input id="reloadInterval" onKeyUp="setTimeout(this.value*1000)" maxlength=5 /> Reload interval (seconds)</li>
+        </ul>
     </div>
 
     <script>
@@ -337,11 +342,75 @@
                     }
                 ];
 
-        var item = Tips[Math.floor(Math.random()*Tips.length)];
+        function showTip()
+        {
+            var item = Tips[Math.floor(Math.random()*Tips.length)];
 
-        document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
-        document.getElementById("title").innerHTML = item.title;
-        document.getElementById("desc").innerHTML = item.desc;
+            document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
+            document.getElementById("title").innerHTML = item.title;
+            document.getElementById("desc").innerHTML = item.desc;
+        }
+        
+        // val is true (reload enabled) or false (reload disabled)
+        function toggleReload(val)
+        {
+            localStorage.setItem('autoreload', val);
+            
+            console.log("setting timeout to "+val);
+            
+            if(val)
+                setTimeout(localStorage.getItem('reloadInterval'))
+            else if(timeoutId)
+                clearTimeout(timeoutId);
+        }
+        
+        function setTimeout(timeout)
+        {
+            if(typeof timeout == "string")
+                timeout = parseInt(timeout, 10);
+            
+            if(typeof timeout == "number" && timeout > 0)
+            {   
+                localStorage.setItem('reloadInterval', timeout);
+                
+                console.log("set reload interval: "+timeout);
+                
+                if(localStorage.getItem('autoreload') == "true")
+                {
+                    console.log("setting interval");
+                    if(timeoutId)
+                        clearTimeout(timeoutId);
+                    timeoutId = setInterval("showTip()", timeout);
+                    localStorage.setItem('nextReload', Date.now()+timeout);
+                }
+            }
+            else
+                console.log("invalid timeout: "+timeout);
+        }
+        
+        showTip();
+        
+        var timeoutId = null;
+        var reloadInterval = localStorage.getItem('reloadInterval');
+        
+        if(reloadInterval)
+        {
+            document.getElementById("reloadInterval").value = reloadInterval/1000;
+            console.log("got reloadInterval from localStorage");
+        }
+        
+        if(localStorage.getItem('autoreload'))
+        {
+            document.getElementById('reload-enable').checked = true;
+            
+            var nextReload = localStorage.getItem('nextReload') - Date.now();
+            console.log("next reload: "+nextReload);
+            if(nextReload > 0)
+                setTimeout("toggleReload(true)", nextReload * 1000);
+            else
+                toggleReload(true);
+        }
+            
     </script>
 </body>
 </html>
