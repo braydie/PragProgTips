@@ -24,12 +24,25 @@
     </div>
 
     <div id="settings" class="card">
+        <div>
         <h2>Theme</h2>
         <ul class="themes">
             <li><a href="#" onclick="changeTheme('light')">Light</a></li>
             <li><a href="#" onclick="changeTheme('dark')">Dark</a></li>
             <li><a href="#" onclick="changeTheme('nightfall')">Nightfall</a></li>
         </ul>
+        </div>
+        <div>
+        <h2>Auto Reload</h2>
+        <p>
+            <label for="autoReloadToggle">Enable reload</label>
+            <input id="autoReloadToggle" type="checkbox" onchange="toggleAutoReload()" />
+        </p>
+        <p>
+            <label for="timeoutMins">Time out interval</label>
+            <input id="timeoutMins" type="number" onKeyUp="setTimeout(this.value)" min="0" max="1000"/>
+        </p>
+        </div>
     </div>
 
     <script>
@@ -57,6 +70,58 @@
             var cssLink = document.getElementById("theme");
             cssLink.setAttribute("href", "css/themes/" + themeName + ".css");
             localStorage.setItem("Theme", themeName);
+        }
+
+        function toggleAutoReload() {
+            var enableReload = localStorage.getItem("enableReload");
+            if(enableReload === "true")
+            {
+                 localStorage.setItem("enableReload", false);
+                 document.getElementById("timeoutMins").disabled = true;
+                 clearTimeout(timeoutId);
+            }
+            else
+            {
+                localStorage.setItem("enableReload", true);
+                document.getElementById("timeoutMins").disabled = false;
+                setTimeout(document.getElementById("timeoutMins").value);
+            }
+        }
+
+        var timeoutId = null;
+
+        function setTimeout(Minutes)
+        {
+            var timeout = parseInt(Minutes, 10);
+            if(timeout > 0)
+            {
+                clearTimeout(timeoutId);
+                timeoutId = setInterval("showTip()", timeout * 1000 * 60);
+                localStorage.setItem("timeoutMins", timeout);
+            }
+            else
+            {
+                clearTimeout(timeoutId);
+            }
+        }
+
+        if(localStorage.getItem("enableReload") != null)
+        {
+            var reloadEnabled = (localStorage.getItem("enableReload") === "true");
+            document.getElementById("autoReloadToggle").checked = reloadEnabled;
+            document.getElementById("timeoutMins").disabled = !reloadEnabled;
+            document.getElementById("timeoutMins").value = localStorage.getItem("timeoutMins");
+
+            if(reloadEnabled)
+            {
+                setTimeout(document.getElementById("timeoutMins").value);
+            }
+        }
+        else
+        {
+            localStorage.setItem("enableReload", false);
+            localStorage.setItem("timeoutMins", 0);
+            document.getElementById("timeoutMins").disabled = true;
         }
 
         if(localStorage.getItem("Theme") != null)
