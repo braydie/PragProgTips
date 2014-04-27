@@ -34,24 +34,24 @@
         <div>
         <h2>Auto Reload</h2>
         <p>
-            <label for="autoReloadToggle">Enable reload</label> 
+            <label for="autoReloadToggle">Enable reload</label>
             <input id="autoReloadToggle" type="checkbox" onchange="toggleAutoReload()" />
         </p>
         <p>
             <label for="timeoutMins">Time out interval</label>
-            <input id="timeoutMins" type="text" onKeyUp="setTimeout(this.value)" />
+            <input id="timeoutMins" type="number" onKeyUp="setTimeout(this.value)" min="0" max="1000"/>
         </p>
         </div>
     </div>
 
-    <script>        
+    <script>
         function showTip() {
             var item = Tips[Math.floor(Math.random()*Tips.length)];
             document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
             document.getElementById("title").innerHTML = item.title;
             document.getElementById("desc").innerHTML = item.desc;
         }
-        
+
         function toggleVisibility(id) {
            var e = document.getElementById(id);
            if(e.style.display == 'block')
@@ -65,57 +65,59 @@
             cssLink.setAttribute("href", "css/themes/" + themeName + ".css");
             localStorage.setItem("Theme", themeName);
         }
-        
+
         function toggleAutoReload() {
             var enableReload = localStorage.getItem("enableReload");
-            if(enableReload == "true")
+            if(enableReload === "true")
             {
                  localStorage.setItem("enableReload", false);
-                 document.getElementById("timeoutMins").disabled = true;                 
-                 clearTimeout(timeoutId);                       
+                 document.getElementById("timeoutMins").disabled = true;
+                 clearTimeout(timeoutId);
             }
             else
-            {                
+            {
                 localStorage.setItem("enableReload", true);
                 document.getElementById("timeoutMins").disabled = false;
                 setTimeout(document.getElementById("timeoutMins").value);
             }
         }
-        
+
         var timeoutId = null;
-          
+
         function setTimeout(Minutes)
-        {            
+        {
             var timeout = parseInt(Minutes, 10);
-            
-            if(typeof timeout == "number" && timeout > 0)
-            {                                
-                timeoutId = setInterval("showTip()", timeout * 1000);
+            if(timeout > 0)
+            {
+                clearTimeout(timeoutId);
+                timeoutId = setInterval("showTip()", timeout * 1000 * 60);
                 localStorage.setItem("timeoutMins", timeout);
             }
             else
             {
-                localStorage.setItem("timeoutMins", 0);   
-                clearTimeout(timeoutId);                
+                clearTimeout(timeoutId);
             }
         }
-                                                      
+
         if(localStorage.getItem("enableReload") != null)
-        {    
+        {
             var reloadEnabled = (localStorage.getItem("enableReload") === "true");
             document.getElementById("autoReloadToggle").checked = reloadEnabled;
-            
+            document.getElementById("timeoutMins").disabled = !reloadEnabled;
+            document.getElementById("timeoutMins").value = localStorage.getItem("timeoutMins");
+
             if(reloadEnabled)
             {
-                document.getElementById("timeoutMins").value = localStorage.getItem("timeoutMins");
-                setTimeout(document.getElementById("timeoutMins").value);                
-            }  
-            else
-            {
-                clearTimeout(timeoutId);
-            }                  
+                setTimeout(document.getElementById("timeoutMins").value);
+            }
         }
-        
+        else
+        {
+            localStorage.setItem("enableReload", false);
+            localStorage.setItem("timeoutMins", 0);
+            document.getElementById("timeoutMins").disabled = true;
+        }
+
         if(localStorage.getItem("Theme") != null)
         {
             changeTheme(localStorage.getItem("Theme"));
@@ -405,8 +407,8 @@
                         "title": "Sign Your Work",
                         "desc": "Craftsmen of an earlier age were proud to sign their work. You should be, too."
                     }
-                ];       
-        
+                ];
+
         showTip();
     </script>
 </body>
