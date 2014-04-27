@@ -50,11 +50,19 @@ a {
 
 ul.themes {
     padding-left:0;
-    display:inline;
+    display:inline;    
 }
 
 ul.themes li {
     margin-right:1em;
     list-style: none;
     display: inline;
+}
+
+input#timeoutMins {
+    width:3em;
+}
+
+div#settings div {
+    margin-bottom:1em;
 }
