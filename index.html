@@ -15,6 +15,7 @@
     </noscript>
 
     <div class="card">
+        <input id="tipNumber" type="hidden">
         <div id="tip">
         </div>
         <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
@@ -32,6 +33,18 @@
     </div>
 
     <script>
+        function showTip(itemNumber) {            
+            if(itemNumber == null)
+            {
+                itemNumber = Math.floor(Math.random()*Tips.length);
+            }                        
+            var item = Tips[itemNumber];
+            document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
+            document.getElementById("title").innerHTML = item.title;
+            document.getElementById("desc").innerHTML = item.desc;
+            document.getElementById("tipNumber").value = itemNumber;            
+        }
+        
         function toggleVisibility(id) {
            var e = document.getElementById(id);
            if(e.style.display == 'block')
@@ -337,11 +350,7 @@
                     }
                 ];
 
-        var item = Tips[Math.floor(Math.random()*Tips.length)];
-
-        document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
-        document.getElementById("title").innerHTML = item.title;
-        document.getElementById("desc").innerHTML = item.desc;
+        showTip();
     </script>
 </body>
 </html>
