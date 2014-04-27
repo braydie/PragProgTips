@@ -25,23 +25,23 @@
 
     <div id="settings" class="card">
         <div>
-        <h2>Theme</h2>
-        <ul class="themes">
-            <li><a href="#" onclick="changeTheme('light')">Light</a></li>
-            <li><a href="#" onclick="changeTheme('dark')">Dark</a></li>
-            <li><a href="#" onclick="changeTheme('nightfall')">Nightfall</a></li>
-        </ul>
+            <h2>Theme</h2>
+            <ul class="themes">
+                <li><a href="#" onclick="changeTheme('light')">Light</a></li>
+                <li><a href="#" onclick="changeTheme('dark')">Dark</a></li>
+                <li><a href="#" onclick="changeTheme('nightfall')">Nightfall</a></li>
+            </ul>
         </div>
         <div>
-        <h2>Auto Reload</h2>
-        <p>
-            <label for="autoReloadToggle">Enable reload</label>
-            <input id="autoReloadToggle" type="checkbox" onchange="toggleAutoReload()" />
-        </p>
-        <p>
-            <label for="timeoutMins">Time out interval</label>
-            <input id="timeoutMins" type="number" onKeyUp="setTimeout(this.value)" min="0" max="1000"/>
-        </p>
+            <h2>Auto Reload</h2>
+            <p>
+                <label for="autoReloadToggle">Enable reload</label>
+                <input id="autoReloadToggle" type="checkbox" onchange="toggleAutoReload()" />
+            </p>
+            <p>
+                <label for="timeoutMins">Time out interval</label>
+                <input id="timeoutMins" type="number" onKeyUp="setTimeout(this.value)" min="0" max="1000"/>
+            </p>
         </div>
     </div>
 
