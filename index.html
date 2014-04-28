@@ -15,9 +15,8 @@
     </noscript>
 
     <div class="card">
+        <input id="tipNumber" type="hidden">
         <div id="tip">
-            <div id="title"></div>
-            <div id="desc"></div>
         </div>
         <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
         <span><a target="_blank" href="https://github.com/braydie/PragProgTips" title="View on GitHub"><i class="fa fa-github fa-2x"></i></a></span>
@@ -47,12 +46,18 @@
     </div>
 
     <script>
-        function showTip() {
-            var item = Tips[Math.floor(Math.random()*Tips.length)];
+        function showTip(itemNumber) {            
+            if(itemNumber == null)
+            {
+                itemNumber = Math.floor(Math.random()*Tips.length);
+            }                        
+            var item = Tips[itemNumber];
+            document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
             document.getElementById("title").innerHTML = item.title;
             document.getElementById("desc").innerHTML = item.desc;
+            document.getElementById("tipNumber").value = itemNumber;            
         }
-
+        
         function toggleVisibility(id) {
            var e = document.getElementById(id);
            if(e.style.display == 'block')
