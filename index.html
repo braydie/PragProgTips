@@ -17,6 +17,8 @@
     <div class="card">
         <input id="tipNumber" type="hidden">
         <div id="tip">
+            <div id="title"></div>
+            <div id="desc"></div>
         </div>
         <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
         <span><a target="_blank" href="https://github.com/braydie/PragProgTips" title="View on GitHub"><i class="fa fa-github fa-2x"></i></a></span>
@@ -46,18 +48,17 @@
     </div>
 
     <script>
-        function showTip(itemNumber) {            
+        function showTip(itemNumber) {
             if(itemNumber == null)
             {
                 itemNumber = Math.floor(Math.random()*Tips.length);
-            }                        
+            }
             var item = Tips[itemNumber];
-            document.getElementById("tip").innerHTML = "<div id=\"title\"></div><div id=\"desc\"></div>";
             document.getElementById("title").innerHTML = item.title;
             document.getElementById("desc").innerHTML = item.desc;
-            document.getElementById("tipNumber").value = itemNumber;            
+            document.getElementById("tipNumber").value = itemNumber;
         }
-        
+
         function toggleVisibility(id) {
            var e = document.getElementById(id);
            if(e.style.display == 'block')
@@ -88,8 +89,6 @@
             }
         }
 
-        var timeoutId = null;
-
         function setTimeout(Minutes)
         {
             var timeout = parseInt(Minutes, 10);
@@ -105,34 +104,8 @@
             }
         }
 
-        if(localStorage.getItem("enableReload") != null)
-        {
-            var reloadEnabled = (localStorage.getItem("enableReload") === "true");
-            document.getElementById("autoReloadToggle").checked = reloadEnabled;
-            document.getElementById("timeoutMins").disabled = !reloadEnabled;
-            document.getElementById("timeoutMins").value = localStorage.getItem("timeoutMins");
-
-            if(reloadEnabled)
-            {
-                setTimeout(document.getElementById("timeoutMins").value);
-            }
-        }
-        else
-        {
-            localStorage.setItem("enableReload", false);
-            localStorage.setItem("timeoutMins", 0);
-            document.getElementById("timeoutMins").disabled = true;
-        }
-
-        if(localStorage.getItem("Theme") != null)
-        {
-            changeTheme(localStorage.getItem("Theme"));
-        }
-        else
-        {
-            changeTheme("light");
-        }
-
+        var timeoutId = null;
+        
         var Tips = [{
                         "title": "Care About Your Craft",
                         "desc": "Why spend your life developing software unless you care about doing it well?"
@@ -415,7 +388,36 @@
                     }
                 ];
 
-        showTip();
+        window.onload = function() {
+            if(localStorage.getItem("enableReload") != null)
+            {
+                var reloadEnabled = (localStorage.getItem("enableReload") === "true");
+                document.getElementById("autoReloadToggle").checked = reloadEnabled;
+                document.getElementById("timeoutMins").disabled = !reloadEnabled;
+                document.getElementById("timeoutMins").value = localStorage.getItem("timeoutMins");
+
+                if(reloadEnabled)
+                {
+                    setTimeout(document.getElementById("timeoutMins").value);
+                }
+            }
+            else
+            {
+                localStorage.setItem("enableReload", false);
+                localStorage.setItem("timeoutMins", 0);
+                document.getElementById("timeoutMins").disabled = true;
+            }
+            showTip();
+        }
+        
+        if(localStorage.getItem("Theme") != null)
+        {
+            changeTheme(localStorage.getItem("Theme"));
+        }
+        else
+        {
+            changeTheme("light");
+        }            
     </script>
 </body>
 </html>
