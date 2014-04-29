@@ -407,18 +407,17 @@
                 localStorage.setItem("timeoutMins", 0);
                 document.getElementById("timeoutMins").disabled = true;
             }
-
-            if(localStorage.getItem("Theme") != null)
-            {
-                changeTheme(localStorage.getItem("Theme"));
-            }
-            else
-            {
-                changeTheme("light");
-            }
-
             showTip();
         }
+        
+        if(localStorage.getItem("Theme") != null)
+        {
+            changeTheme(localStorage.getItem("Theme"));
+        }
+        else
+        {
+            changeTheme("light");
+        }            
     </script>
 </body>
 </html>
