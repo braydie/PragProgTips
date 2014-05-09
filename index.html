@@ -14,18 +14,19 @@
         Javascript disabled!
     </noscript>
 
+    <div id="wrapper" class=""></div>
+    
     <div class="card">
         <input id="tipNumber" type="hidden">
         <div id="tip">
             <div id="title"></div>
             <div id="desc"></div>
-        </div>
-        <p><a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a></p>
-        <span><a target="_blank" href="https://github.com/braydie/PragProgTips" title="View on GitHub"><i class="fa fa-github fa-2x"></i></a></span>
-        <span id="settings-toggle"><a href="#" onclick="toggleVisibility('settings')" title="Toggle Settings"><i class="fa fa-cog fa-2x"></i></a></span>
+        </div>        
     </div>
-
+    
     <div id="settings" class="card">
+        <div class="container">
+        <h1>Settings</h1>
         <div>
             <h2>Theme</h2>
             <ul class="themes">
@@ -45,8 +46,18 @@
                 <input id="timeoutMins" type="number" onKeyUp="setTimeout(this.value)" onChange="setTimeout(this.value)" min="0" max="1000"/>
             </p>
         </div>
+        <span id="settings-toggle"><a href="#" onclick="toggleSettings()" title="Close Settings"><i class="fa fa-times fa-2x"></i></a></span>
+        </div>
     </div>
 
+    <footer>
+        <div>
+        <span id="github"><a target="_blank" href="https://github.com/braydie/PragProgTips" title="View on GitHub"><i class="fa fa-github fa-2x"></i></a></span>
+        <a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a>        
+        <span id="settings-toggle"><a href="#" onclick="toggleSettings()" title="Toggle Settings"><i class="fa fa-cog fa-2x"></i></a></span>
+        </div>
+    </footer>
+    
     <script>
         function showTip(itemNumber) {
             if(itemNumber == null)
@@ -59,12 +70,19 @@
             document.getElementById("tipNumber").value = itemNumber;
         }
 
-        function toggleVisibility(id) {
-           var e = document.getElementById(id);
-           if(e.style.display == 'block')
-              e.style.display = 'none';
-           else
-              e.style.display = 'block';
+        function toggleSettings() {
+            var settingsPane = document.getElementById("settings");
+            var wrapper = document.getElementById("wrapper"); 
+            if(settingsPane.className.indexOf("active") > -1)
+            {
+                settingsPane.className = "card";
+                wrapper.className = "";
+            }
+            else
+            {
+                settingsPane.className = "card active";
+                wrapper.className = "active";
+            }
         }
 
         function changeTheme(themeName) {

@@ -1,9 +1,30 @@
 html { 
     font-family: sans-serif; 
-    color:#000000;
+    color:#000000;            
 }
 
-.card {    
+body {
+    position:relative;
+    width:100%;
+    margin:0;
+}
+
+#wrapper {
+    background:#000000;
+    opacity: 0;    
+    height:100%; 
+    width:100%; 
+    position:fixed; 
+    top:0;
+    left:0;    
+    -webkit-transition: opacity 0.3s ease-out;
+}
+
+#wrapper.active {    
+    opacity:0.75;
+}
+
+.card {        
     margin-top: 10%;
     margin-left: 4em;
     margin-right: 4em;
@@ -11,6 +32,7 @@ html {
     -webkit-box-shadow: 0 2px 1px rgba(0,0,0,0.2);
     box-shadow: 0 2px 1px rgba(0,0,0,0.2);
     border-radius: 3px;
+    min-height:11em;
 }
 
 #title {  
@@ -29,17 +51,36 @@ a {
     font-weight: bold;
 }
 
-#settings {
-    display:none;
-    margin-top: 1em;
-    margin-bottom:1em;
+#settings {  
+    opacity: 0;
+    margin:0;    
+    z-index:0;
+    position: absolute;    
+    top:0;  
+    right:0;   
+    left:0;
+    width:100%;
+    padding:0;
 }
 
-#settings h2 {
-    margin-top: 0;
+.container {
+    padding:2em;
+    margin:2em;
+}
+#settings.active {
+    opacity: 1;
+    -webkit-transition: opacity 0.3s ease-out;
 }
 
-#settings-toggle i {
+#settings h1, #settings h2 {
+    margin-top: 0;    
+}
+
+#github {
+    margin-right:1em;
+}
+
+#settings-toggle i {    
     float:right;
     color: rgba(0,0,0,0.3); 
 }
@@ -65,4 +106,17 @@ input#timeoutMins {
 
 div#settings div {
     margin-bottom:1em;
+}
+
+footer {    
+    position:fixed;
+    bottom:0;
+    left:0;
+    width:100%;
+    height:4em;
+    background:rgba(0,0,0,0.5);
+}
+
+footer div {
+    margin:1em 2em;
 }
