@@ -24,8 +24,9 @@
         </div>        
     </div>
     
-    <div id="settings" class="card">
+    <div id="settings" class="">
         <div class="container">
+        <div class="card">
         <h1>Settings</h1>
         <div>
             <h2>Theme</h2>
@@ -46,7 +47,8 @@
                 <input id="timeoutMins" type="number" onKeyUp="setTimeout(this.value)" onChange="setTimeout(this.value)" min="0" max="1000"/>
             </p>
         </div>
-        <span id="settings-toggle"><a href="#" onclick="toggleSettings()" title="Close Settings"><i class="fa fa-times fa-2x"></i></a></span>
+        <span class="settings-toggle"><a href="#" onclick="toggleSettings()" title="Close Settings"><i class="fa fa-times fa-2x"></i></a></span>
+        </div>
         </div>
     </div>
 
@@ -54,7 +56,7 @@
         <div>
         <span id="github"><a target="_blank" href="https://github.com/braydie/PragProgTips" title="View on GitHub"><i class="fa fa-github fa-2x"></i></a></span>
         <a target="_blank" href="http://pragprog.com/the-pragmatic-programmer/extracts/tips">Read more Pragmatic Software Development Tips</a>        
-        <span id="settings-toggle"><a href="#" onclick="toggleSettings()" title="Toggle Settings"><i class="fa fa-cog fa-2x"></i></a></span>
+        <span class="settings-toggle"><a href="#" onclick="toggleSettings()" title="Toggle Settings"><i class="fa fa-cog fa-2x"></i></a></span>
         </div>
     </footer>
     
@@ -75,12 +77,12 @@
             var wrapper = document.getElementById("wrapper"); 
             if(settingsPane.className.indexOf("active") > -1)
             {
-                settingsPane.className = "card";
+                settingsPane.className = "";
                 wrapper.className = "";
             }
             else
             {
-                settingsPane.className = "card active";
+                settingsPane.className = "active";
                 wrapper.className = "active";
             }
         }

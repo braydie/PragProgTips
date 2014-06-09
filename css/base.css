@@ -63,10 +63,14 @@ a {
     padding:0;
 }
 
-.container {
-    padding:2em;
+.container {    
     margin:2em;
 }
+
+.container .card {
+    margin-top:0;
+}
+
 #settings.active {
     opacity: 1;
     -webkit-transition: opacity 0.3s ease-out;
@@ -80,13 +84,17 @@ a {
     margin-right:1em;
 }
 
-#settings-toggle i {    
+.settings-toggle i {        
     float:right;
-    color: rgba(0,0,0,0.3); 
+    color: rgba(255,255,255,0.3); 
 }
 
-#settings-toggle i:hover {
-    color: rgba(0,0,0,0.5); 
+.settings-toggle i:hover {
+    color: rgba(255,255,255,0.5); 
+}
+
+.card .settings-toggle i{
+    margin-top:-0.75em;
 }
 
 ul.themes {
