@@ -7,18 +7,33 @@ html {
    background:#FFFFFF;
 }
 
-#title {
+#title, #settings h1 {
     border-bottom:4px solid #37BC9B; 
+}
+
+a, #settings-toggle i {
+    color:#DA4453;
+}
+
+a:hover, #settings-toggle i:hover {
+    color:#ED5565;
 }
 
 #desc {
     color:#434A54;
 }
 
-a {
-    color:#DA4453; 
+footer {
+    background:rgba(255,255,255,0.8);
 }
 
-a:hover {
-    color:#ED5565;
+.settings-toggle i {
+    color: rgba(0,0,0,0.3);
+}
+.settings-toggle i:hover {
+    color: rgba(0,0,0,0.6);
+}
+
+#wrapper.active {
+    opacity: 0.35;
 }

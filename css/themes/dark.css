@@ -7,27 +7,16 @@ html {
    background:#222326;
 }
 
-#title {
+#title, #settings h1 {
     color:#FFFFFF;
     border-bottom:4px solid #37BC9B; 
 }
 
-#desc {
+
+#desc, a, #settings-toggle i {
     color:#88898C;
 }
 
-a {
-    color:#DA4453; 
-}
-
-a:hover {
-    color:#ED5565;
-}
-
-#settings-toggle i {
-    color:#88898C;
-}
-
-#settings-toggle i:hover {
+a:hover, #settings-toggle i:hover {
     color:#FFFFFF;
 }
