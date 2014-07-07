@@ -24,5 +24,16 @@ a:hover, #settings-toggle i:hover {
 }
 
 footer {
-    background:rgba(0,0,0,0.8);
+    background:rgba(255,255,255,0.8);
+}
+
+.settings-toggle i {
+    color: rgba(0,0,0,0.3);
+}
+.settings-toggle i:hover {
+    color: rgba(0,0,0,0.6);
+}
+
+#wrapper.active {
+    opacity: 0.35;
 }
