@@ -56,8 +56,8 @@ a {
     font-weight: bold;
 }
 
-#settings {  
-    opacity: 0;
+#settings {
+    display:none;
     margin:0;    
     z-index:0;
     position: absolute;    
@@ -73,7 +73,7 @@ a {
 }
 
 #settings.active {
-    opacity: 1;
+    display:block;
     -webkit-transition: opacity 0.3s ease-out;
 }
 
